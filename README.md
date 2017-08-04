@@ -63,6 +63,9 @@ The `base_dir` is searched for any new artifacts being stored
 ### `in` : retrieve a given artifacts from `server`
 Given a `version` check for its existence and rsync back the artifacts for the
 version.
+#### Parameters
+
+* `rsync_opts`: *Optional.* An array of strings with arguments that should be passed to `rsync`.
 
 ### `out` : place a new artifact on `server`
 Generate a new `version` number an associated directory in `base_dir` on `server`
@@ -70,3 +73,4 @@ using the specified user credential. Rsync across artifacts from the input direc
 #### Parameters
 
 * `sync_dir`: *Optional.* Directory to be sync'd. If specified limit the directory to be sync'd to sync_dir. If not specified everything in the `put` will be sent (which could include container resources, whole build trees etc.)
+* `rsync_opts`: *Optional.* An array of strings with arguments that should be passed to `rsync`.

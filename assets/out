@@ -67,7 +67,7 @@ echo $VERSION_STRING 1>&2
 MD5_STRING=`echo $VERSION_STRING | $MD5_TOOL | cut -d ' ' -f 1 `
 if [ $? -eq 0 ]; then
   echo $MD5_STRING 1>&2
-  
+
   if [ $DISABLE_VERSION_PATH -eq 0 ]
   then
       MD5_PATH=""
@@ -78,14 +78,14 @@ if [ $? -eq 0 ]; then
   # Create the new directory for this build
   DEST_DIR=$BASE_DIR/$MD5_PATH
   echo $DEST_DIR 1>&2
-  
+
   REPORTED_VERSION=0
   for SERVER in $SERVERS
   do
       CMD="ssh -i ~/.ssh/server_key -p $PORT $USER@$SERVER mkdir -p $DEST_DIR"
       echo $CMD 1>&2
       eval $CMD 1>&2
-      
+
       if [ $? -eq 0 ]; then
         RSYNC_CMD="rsync $RSYNC_OPTS -e 'ssh -i ~/.ssh/server_key -p $PORT'  $SRC_DIR/$SYNC_DIR/ $USER@$SERVER:$DEST_DIR"
         echo $RSYNC_CMD 1>&2
